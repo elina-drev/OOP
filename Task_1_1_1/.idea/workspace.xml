@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f43be432-4eb2-4aa4-8062-a229cf54d774" name="Changes" comment="The script added" />
+    <list default="true" id="f43be432-4eb2-4aa4-8062-a229cf54d774" name="Changes" comment="workspace update">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,18 +32,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "elina-drev"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;elina-drev&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/elina-drev/OOP.git",
-    "accountId": "de44a0cf-a8dd-4095-b771-073d31589f38"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/elina-drev/OOP.git&quot;,
+    &quot;accountId&quot;: &quot;de44a0cf-a8dd-4095-b771-073d31589f38&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 5
@@ -56,11 +58,13 @@
     "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
     "Gradle.Task_1_1_1 [:org.example.Heapsort.main()].executor": "Run",
     "Gradle.Task_1_1_1.executor": "Run",
+    "Gradle.Tests in 'Task_1_1_1'.executor": "Run",
     "Gradle.UnitTest.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "#1 on Task__1__1__1",
+    "git-widget-placeholder": "Task__1__1__1",
     "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true"
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/elina/Desktop/OOP"
   }
 }]]></component>
   <component name="RunManager">
@@ -109,11 +113,20 @@
       <option name="project" value="LOCAL" />
       <updated>1726474650537</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="workspace update">
+      <option name="closed" value="true" />
+      <created>1726475312180</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1726475312180</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="The script added" />
-    <option name="LAST_COMMIT_MESSAGE" value="The script added" />
+    <MESSAGE value="workspace update" />
+    <option name="LAST_COMMIT_MESSAGE" value="workspace update" />
   </component>
 </project>

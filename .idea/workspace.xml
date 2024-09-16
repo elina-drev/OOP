@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8540f8a9-de9a-4382-8cb3-8449c77c304b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/.gradle/8.8/checksums/checksums.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/.gradle/8.8/checksums/md5-checksums.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/.gradle/8.8/checksums/sha1-checksums.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/.gradle/8.8/dependencies-accessors/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/.gradle/8.8/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Task_1_1_1/.gradle/8.8/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/.gradle/8.8/expanded/expanded.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/.gradle/8.8/fileChanges/last-build.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/.gradle/8.8/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/Task_1_1_1/.gradle/8.8/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/.gradle/8.8/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Task_1_1_1/.gradle/8.8/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/.gradle/8.8/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/Task_1_1_1/.gradle/8.8/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/.gradle/8.8/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Task_1_1_1/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/Task_1_1_1/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/.gradle/vcs-1/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/build/docs/javadoc/element-list" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/build/docs/javadoc/legal/jquery.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/build/docs/javadoc/legal/jqueryUI.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/build/docs/javadoc/member-search-index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/build/docs/javadoc/module-search-index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/build/docs/javadoc/package-search-index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/build/docs/javadoc/tag-search-index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/build/docs/javadoc/type-search-index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/build/reports/jacoco/test/html/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/build/reports/jacoco/test/html/jacoco-resources/branchfc.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/build/reports/jacoco/test/html/jacoco-resources/branchnc.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/build/reports/jacoco/test/html/jacoco-resources/branchpc.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/build/reports/jacoco/test/html/jacoco-resources/bundle.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/build/reports/jacoco/test/html/jacoco-resources/class.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/build/reports/jacoco/test/html/jacoco-resources/down.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/build/reports/jacoco/test/html/jacoco-resources/greenbar.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/build/reports/jacoco/test/html/jacoco-resources/group.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/build/reports/jacoco/test/html/jacoco-resources/method.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/build/reports/jacoco/test/html/jacoco-resources/package.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/build/reports/jacoco/test/html/jacoco-resources/prettify.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/build/reports/jacoco/test/html/jacoco-resources/prettify.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/build/reports/jacoco/test/html/jacoco-resources/redbar.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/build/reports/jacoco/test/html/jacoco-resources/report.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/build/reports/jacoco/test/html/jacoco-resources/report.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/build/reports/jacoco/test/html/jacoco-resources/session.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/build/reports/jacoco/test/html/jacoco-resources/sort.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/build/reports/jacoco/test/html/jacoco-resources/sort.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/build/reports/jacoco/test/html/jacoco-resources/source.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/build/reports/jacoco/test/html/jacoco-resources/up.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/build/reports/jacoco/test/html/org.example/Main.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/build/reports/jacoco/test/html/org.example/Main.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/build/reports/jacoco/test/html/org.example/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/build/reports/jacoco/test/html/org.example/index.source.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/build/reports/tests/test/css/base-style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/build/reports/tests/test/css/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/build/reports/tests/test/js/report.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/build/test-results/test/binary/output.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/build/test-results/test/binary/output.bin.idx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/build/tmp/.cache/expanded/zip_cde35f471dab581134460fc9a50e2c59/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/build/tmp/.cache/expanded/zip_cde35f471dab581134460fc9a50e2c59/META-INF/maven/org.jacoco/org.jacoco.agent/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/build/tmp/.cache/expanded/zip_cde35f471dab581134460fc9a50e2c59/META-INF/maven/org.jacoco/org.jacoco.agent/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/build/tmp/.cache/expanded/zip_cde35f471dab581134460fc9a50e2c59/about.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/build/tmp/javadoc/javadoc.options" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1_1_1/src/main/java/org/example/Heapsort.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$/Task_1_1_1">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Task_1_1_1" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "elina-drev"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/elina-drev/OOP.git",
+    "accountId": "de44a0cf-a8dd-4095-b771-073d31589f38"
+  }
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 6
+}]]></component>
+  <component name="ProjectId" id="2m97wmCkSY03OyX0fIDEmsj32QN" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.Task_1_1_1 [:org.example.Heapsort.main()].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "#1 on Merging Task__1__1__1",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8540f8a9-de9a-4382-8cb3-8449c77c304b" name="Changes" comment="" />
+      <created>1726477180216</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1726477180216</updated>
+    </task>
+    <servers />
+  </component>
+</project>

@@ -3,61 +3,69 @@
 import java.util.Scanner;
 
 <span class="fc" id="L5">public class Heapsort {</span>
-    // Sorting the original array of length len by the pyramid sorting method
+    // Сортировка исходного массива длины len методом пирамидальной сортировки
     public void sort(int[] arr, int len)
     {
-<span class="fc bfc" id="L9" title="All 2 branches covered.">        for (int i = len / 2 - 1; i &gt;= 0; i--) // Building a heap (rearranging the array)</span>
-<span class="fc" id="L10">            heapify(arr, len, i);</span>
+        // Построение кучи (перегруппируем массив)
+<span class="fc bfc" id="L10" title="All 2 branches covered.">        for (int i = len / 2 - 1; i &gt;= 0; i--)</span>
+<span class="fc" id="L11">            heapify(arr, len, i);</span>
 
-        // extracting items from the heap
-<span class="fc bfc" id="L13" title="All 2 branches covered.">        for (int i=len-1; i&gt;=0; i--)</span>
+        // Один за другим извлекаем элементы из кучи
+<span class="fc bfc" id="L14" title="All 2 branches covered.">        for (int i=len-1; i&gt;=0; i--)</span>
         {
-<span class="fc" id="L15">            int temp = arr[0];// Moving the current root to the end</span>
-<span class="fc" id="L16">            arr[0] = arr[i];</span>
-<span class="fc" id="L17">            arr[i] = temp;</span>
-<span class="fc" id="L18">            heapify(arr, i, 0);// // Calling the heapify procedure on a reduced heap</span>
-        }
-<span class="fc" id="L20">    }</span>
+            // Перемещаем текущий корень в конец
+<span class="fc" id="L17">            int temp = arr[0];</span>
+<span class="fc" id="L18">            arr[0] = arr[i];</span>
+<span class="fc" id="L19">            arr[i] = temp;</span>
 
-    // Converting to a binary heap of a subtree with root node i, which is an index in arr[].
-    // n - size of heap
+            // Вызываем процедуру heap ify на уменьшенной куче
+<span class="fc" id="L22">            heapify(arr, i, 0);</span>
+        }
+<span class="fc" id="L24">    }</span>
+
+    // Процедура для преобразования в двоичную кучу поддерева с корневым узлом i, что является индексом в arr[]. n - размер кучи
     public void heapify(int[] arr, int n, int i)
     {
-<span class="fc" id="L26">        int largest = i; // Initialize the largest element as the root</span>
-<span class="fc" id="L27">        int l = 2*i + 1; // left</span>
-<span class="fc" id="L28">        int r = 2*i + 2; // right</span>
+<span class="fc" id="L29">        int largest = i; // Инициализируем наибольший элемент как корень</span>
+<span class="fc" id="L30">        int l = 2*i + 1; // левый = 2*i + 1</span>
+<span class="fc" id="L31">        int r = 2*i + 2; // правый = 2*i + 2</span>
 
-<span class="fc bfc" id="L30" title="All 4 branches covered.">        if (l &lt; n &amp;&amp; arr[l] &gt; arr[largest])// If the left child element is larger than the root</span>
-<span class="fc" id="L31">            largest = l;</span>
+        // Если левый дочерний элемент больше корня
+<span class="fc bfc" id="L34" title="All 4 branches covered.">        if (l &lt; n &amp;&amp; arr[l] &gt; arr[largest])</span>
+<span class="fc" id="L35">            largest = l;</span>
 
-<span class="fc bfc" id="L33" title="All 4 branches covered.">        if (r &lt; n &amp;&amp; arr[r] &gt; arr[largest])// If the right child element is larger than the largest element at the moment</span>
-<span class="fc" id="L34">            largest = r;</span>
+        // Если правый дочерний элемент больше, чем самый большой элемент на данный момент
+<span class="fc bfc" id="L38" title="All 4 branches covered.">        if (r &lt; n &amp;&amp; arr[r] &gt; arr[largest])</span>
+<span class="fc" id="L39">            largest = r;</span>
 
-<span class="fc bfc" id="L36" title="All 2 branches covered.">        if (largest != i)// If the largest element is not the root</span>
+        // Если самый большой элемент не корень
+<span class="fc bfc" id="L42" title="All 2 branches covered.">        if (largest != i)</span>
         {
-<span class="fc" id="L38">            int swap = arr[i];</span>
-<span class="fc" id="L39">            arr[i] = arr[largest];</span>
-<span class="fc" id="L40">            arr[largest] = swap;</span>
-<span class="fc" id="L41">            heapify(arr, n, largest);// Recursively convert the affected subtree to a binary heap</span>
+<span class="fc" id="L44">            int swap = arr[i];</span>
+<span class="fc" id="L45">            arr[i] = arr[largest];</span>
+<span class="fc" id="L46">            arr[largest] = swap;</span>
+
+            // Рекурсивно преобразуем в двоичную кучу затронутое поддерево
+<span class="fc" id="L49">            heapify(arr, n, largest);</span>
         }
-<span class="fc" id="L43">    }</span>
+<span class="fc" id="L51">    }</span>
 
     public static void main(String[] args){
-<span class="nc" id="L46">        Scanner scan = new Scanner(System.in);</span>
-<span class="nc" id="L47">        int len = scan.nextInt();</span>
-<span class="nc" id="L48">        int[] arr = new int[len];</span>
-<span class="nc bnc" id="L49" title="All 2 branches missed.">        for(int i = 0; i &lt; len; ++i){</span>
-<span class="nc" id="L50">            arr[i] = scan.nextInt();</span>
+<span class="nc" id="L54">        Scanner scan = new Scanner(System.in);</span>
+<span class="nc" id="L55">        int len = scan.nextInt();</span>
+<span class="nc" id="L56">        int[] arr = new int[len];</span>
+<span class="nc bnc" id="L57" title="All 2 branches missed.">        for(int i = 0; i &lt; len; ++i){</span>
+<span class="nc" id="L58">            arr[i] = scan.nextInt();</span>
         }
 
-<span class="nc" id="L53">        Heapsort ob = new Heapsort();</span>
-<span class="nc" id="L54">        ob.sort(arr, len);</span>
+<span class="nc" id="L61">        Heapsort ob = new Heapsort();</span>
+<span class="nc" id="L62">        ob.sort(arr, len);</span>
 
-<span class="nc" id="L56">        System.out.println(&quot;\nSorted array is&quot;);</span>
-<span class="nc bnc" id="L57" title="All 2 branches missed.">        for (int i = 0; i &lt; len; ++i){</span>
-<span class="nc" id="L58">            System.out.print(arr[i]+&quot; &quot;);</span>
+<span class="nc" id="L64">        System.out.println(&quot;\nSorted array is&quot;);</span>
+<span class="nc bnc" id="L65" title="All 2 branches missed.">        for (int i = 0; i &lt; len; ++i){</span>
+<span class="nc" id="L66">            System.out.print(arr[i]+&quot; &quot;);</span>
         }
-<span class="nc" id="L60">        System.out.println();</span>
-<span class="nc" id="L61">    }</span>
+<span class="nc" id="L68">        System.out.println();</span>
+<span class="nc" id="L69">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

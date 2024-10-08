@@ -11,8 +11,8 @@ public class UnitTest {
     @Test
     void TestEMPTY() {
         int[] out = {};
-        func.sort(out, out.length);
-        assertArrayEquals(new int[] {}, out);
+        int[] arr = func.sort(out, out.length);
+        assertArrayEquals(new int[] {}, arr);
     }
 
     @Test
@@ -23,10 +23,10 @@ public class UnitTest {
             out[i] = rnd.nextInt();
         }
         int[] arr = out.clone();
+        int[] our = func.sort(arr, arr.length);
         Arrays.sort(arr);
-        func.sort(out, out.length);
 
-        assertArrayEquals(arr, out);
+        assertArrayEquals(arr, our);
     }
 
     @Test
@@ -37,10 +37,10 @@ public class UnitTest {
             out[i] = rnd.nextInt();
         }
         int[] arr = out.clone();
+        int[] our = func.sort(arr, arr.length);
         Arrays.sort(arr);
-        func.sort(out, out.length);
 
-        assertArrayEquals(arr, out);
+        assertArrayEquals(arr, our);
     }
 
     @Test
@@ -51,10 +51,10 @@ public class UnitTest {
             out[i] = rnd.nextInt();
         }
         int[] arr = out.clone();
+        int[] our = func.sort(arr, arr.length);
         Arrays.sort(arr);
-        func.sort(out, out.length);
 
-        assertArrayEquals(arr, out);
+        assertArrayEquals(arr, our);
     }
 
     @Test
@@ -65,16 +65,16 @@ public class UnitTest {
             out[i] = rnd.nextInt();
         }
         int[] arr = out.clone();
+        int[] our = func.sort(arr, arr.length);
         Arrays.sort(arr);
-        func.sort(out, out.length);
 
-        assertArrayEquals(arr, out);
+        assertArrayEquals(arr, our);
     }
 
     @Test
     void TestSame() {
         int[] out = {0,0,0,0,0,0,0,0};
-        func.sort(out, out.length);
-        assertArrayEquals(new int[] {0,0,0,0,0,0,0,0}, out);
+        int[] arr = func.sort(out, out.length);
+        assertArrayEquals(new int[] {0,0,0,0,0,0,0,0}, arr);
     }
 }

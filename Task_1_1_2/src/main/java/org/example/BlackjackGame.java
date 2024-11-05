@@ -10,27 +10,53 @@ public class BlackjackGame {
 
     public BlackjackGame() {
         deck = new Deck();
-        player = new Player("Игрок", false);
-        dealer = new Player("Дилер", true);
+        player = new Player("Player");
+        dealer = new Player("Dealer");
         playerWins = 0;
         dealerWins = 0;
     }
+//for tests
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    public void setDealer(Player dealer) {
+        this.dealer = dealer;
+    }
+
+    public int getPlayerWins() {
+        return playerWins;
+    }
+
+    public int getDealerWins() {
+        return dealerWins;
+    }
+    /////end of test
 
     public void playGame() {
         Scanner scanner = new Scanner(System.in);
         boolean continuePlaying = true;
+        System.out.println("Welcome to Blackjack!");
 
         while (continuePlaying) {
-            System.out.println("Добро пожаловать в Блэкджек!");
-            System.out.println("Раунд " + (playerWins + dealerWins + 1));
-            dealInitialCards();
-            if (checkInitialBlackjack()) {
-                continuePlaying = askToContinue(scanner);
+            // Проверка, достаточно ли карт в колоде
+            if (!deck.hasEnoughCards()) {
+                deck = new Deck();  // Создаем новую колоду
+                System.out.println("Shuffling new deck...");
+            }
+
+            resetHands();  // Очищаем руки перед началом раунда
+
+            System.out.println("\nRound " + (playerWins + dealerWins + 1));
+            dealInitialCards(); //Раздает начальные карты игроку и дилеру
+            if (checkInitialBlackjack()) { //если есть ли у игрока или дилера блэкджек сразу после раздачи первых двух карт
+                displayHands(true);  // Открываем карту дилера, если игрок сразу выигрывает
+                continuePlaying = askToContinue(scanner);//если есть блэкджек спросить про новый раунд
                 continue;
             }
 
-            playerTurn(scanner);
-            if (!player.isBusted()) {
+            playerTurn(scanner);//если еще нет блэка ни у кого - очередь хода игрока
+            if (!player.isBusted()) {//если игрок не перебрал, то ход дилера
                 dealerTurn();
             }
             determineWinner();
@@ -39,23 +65,28 @@ public class BlackjackGame {
         scanner.close();
     }
 
+    private void resetHands() {
+        player.clearHand();  // Очищаем карты игрока
+        dealer.clearHand();  // Очищаем карты дилера
+        deck = new Deck();   // Создаем новую перетасованную колоду
+    }
     private void dealInitialCards() {
-        System.out.println("Дилер раздал карты");
+        System.out.println("Dealer dealt the cards");
         for (int i = 0; i < 2; i++) {
             player.addCard(deck.dealCard());
             dealer.addCard(deck.dealCard());
         }
-        displayHands(true);
+        displayHands(false);//show players and dealers if revealDealer==true (closed card is false)
     }
 
     private boolean checkInitialBlackjack() {
         if (player.hasBlackjack()) {
-            System.out.println("Игрок получил Блэкджек! Игрок выигрывает раунд!");
+            System.out.println("Player got a Blackjack! Player wins the round!");
             playerWins++;
             return true;
         }
         if (dealer.hasBlackjack()) {
-            System.out.println("Дилер получил Блэкджек! Дилер выигрывает раунд!");
+            System.out.println("Dealer got the Blackjack! Dealer wins the round!");
             dealerWins++;
             return true;
         }
@@ -64,82 +95,86 @@ public class BlackjackGame {
 
     private void playerTurn(Scanner scanner) {
         while (true) {
-            System.out.println("Ваш ход");
+            System.out.println("\nPlayer turn");
             System.out.println("-------");
-            System.out.println("Введите “1”, чтобы взять карту, и “0”, чтобы остановиться (не берите больше карт)...");
+            System.out.println("Enter \"1\" to take a card and \"0\" to stop (don't take any more cards)...");
             int action = scanner.nextInt();
 
             if (action == 1) {
                 Card newCard = deck.dealCard();
                 player.addCard(newCard);
-                System.out.println("Вы открыли карту " + newCard);
-                displayHands(false);
+                System.out.println("You opened card " + newCard);
+                displayHands(false);//карта диллера еще скрыта
                 if (player.isBusted()) {
-                    System.out.println("Игрок перебрал! Дилер выигрывает раунд!");
+                    System.out.println("Player has overdone it! Dealer wins the round!");
                     dealerWins++;
                     return;
                 }
             } else if (action == 0) {
-                System.out.println("Вы решили остановиться. Дальше ходит дилер.");
+                System.out.println("You have decided to stop. The dealer goes next.");
                 break; // Игрок заканчивает свой ход
             } else {
-                System.out.println("Ошибочный ввод. Пожалуйста, введите “1” или “0”.");
+                System.out.println("Incorrect input. Please enter \"1\" or \"0\".");
             }
         }
     }
 
     private void dealerTurn() {
-        System.out.println("Ход дилера");
+        System.out.println("\nDealer's turn");
         System.out.println("-------");
-        System.out.println("Дилер открывает закрытую карту " + dealer.getHiddenCard());
+        System.out.println("Dealer opens a closed card " + dealer.getHiddenCard());
+
 
         // Дилер открывает одну еще карту
-        dealer.addCard(deck.dealCard());
-        displayHands(false);
+        displayHands(true);
 
         while (dealer.getHandValue() < 17) {
             Card newCard = deck.dealCard();
             dealer.addCard(newCard);
-            System.out.println("Дилер открывает карту " + newCard);
-            displayHands(false);
+            System.out.println("\nDealer opens the card " + newCard);
+            //dealer.addCard(deck.dealCard());
+            displayHands(true);
         }
     }
 
     private void determineWinner() {
         int playerValue = player.getHandValue();
         int dealerValue = dealer.getHandValue();
-        System.out.println("Ваши карты: " + player.getHand() + " => " + playerValue);
-        System.out.println("Карты дилера: " + dealer.getHand() + " => " + dealerValue);
 
         if (dealer.isBusted()) {
-            System.out.println("Дилер перебрал! Игрок выигрывает раунд!");
+            System.out.println("\nDealer has overdone it! Player wins the round!");
             playerWins++;
         } else if (playerValue > dealerValue) {
-            System.out.println("Игрок выигрывает раунд!");
+            System.out.println("\nPlayer wins the round!");
             playerWins++;
         } else if (playerValue < dealerValue) {
-            System.out.println("Дилер выигрывает раунд!");
+            System.out.println("\nDealer wins the round!");
             dealerWins++;
         } else {
-            System.out.println("Ничья!");
+            System.out.println("\nIt's a draw!");//ничья
         }
 
-        System.out.println("Счет: Игрок " + playerWins + " – Дилер " + dealerWins);
+        System.out.println("Score: Player " + playerWins + " - Dealer " + dealerWins);
+    }
+    //for tests
+    public void endRound() {
+        determineWinner();
     }
 
     private void displayHands(boolean revealDealer) {
         player.displayHand();
         if (revealDealer) {
-            dealer.displayHand();
+            dealer.displayHand(); // Показываем все карты дилера
         } else {
-            System.out.println("Карты дилера: " + dealer.getHand().get(0) + ", <закрытая карта>");
+            // Отображаем только первую карту дилера, а вторую скрываем
+            System.out.println("Dealer's cards: " + "[" + dealer.getHand().getFirst() + ", <closed card>" + "]");
         }
     }
 
     private boolean askToContinue(Scanner scanner) {
-        System.out.println("Хотите продолжить играть? (да/нет)");
+        System.out.println("\nDo you want to continue playing? (yes/no)");
         String response = scanner.next().toLowerCase();
-        return response.equals("да");
+        return response.equals("yes");
     }
 
     public static void main(String[] args) {

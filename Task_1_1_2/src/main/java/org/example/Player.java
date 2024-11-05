@@ -4,13 +4,12 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class Player {
-    private String name;              // Имя игрока
-    private List<Card> hand;          // Рука игрока
-    private boolean dealer;            // Дилер или игрок
+    private final String name;              // Имя игрока
+    private final List<Card> hand;          // Рука игрока
 
-    public Player(String name, boolean dealer) {
+    public Player(String name) {
         this.name = name;
-        this.dealer = dealer;
+        // Дилер или игрок
         hand = new ArrayList<>();
     }
 
@@ -25,7 +24,7 @@ public class Player {
         // Подсчет значений карт
         for (Card card : hand) {
             value += card.getValue();
-            if (card.getRank().equals("Туз")) {
+            if (card.getRank().equals("Ace")) {
                 acesCount++;
             }
         }
@@ -52,11 +51,15 @@ public class Player {
     }
 
     public Card getHiddenCard() {
-        return hand.get(0); // Получение закрытой карты (первая карта)
+        return hand.get(1); // Получение закрытой карты (вторая карта)
     }
 
     public void displayHand() {
-        System.out.print(name + " карты: " + hand + " => " + getHandValue());
+        System.out.print(name + " cards: " + hand + " => " + getHandValue());//использует toString
         System.out.println();
     }
+    public void clearHand() {
+        hand.clear();  // Очищаем список карт
+    }
+
 }

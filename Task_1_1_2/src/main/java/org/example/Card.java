@@ -3,8 +3,8 @@ package org.example;
 //Card: Класс, представляющий карту с мастью, номиналом и очковым значением
 public class Card {
     private String suit; // Масть
-    private String rank; // Ранг
-    private int value;   // Значение карты
+    private final String rank; // Ранг
+    private final int value;   // Значение карты
 
     public Card(String suit, String rank, int value) {
         this.suit = suit;
@@ -19,11 +19,11 @@ public class Card {
     public String getRank() {
         return rank;
     }
-
+//
     public int getValue() {
         return value;
     }
-
+    
     @Override
     public String toString() {
         return rank + " " + suit + " (" + value + ")";

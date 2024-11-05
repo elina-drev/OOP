@@ -34,35 +34,36 @@ public class BlackjackGame {
     /////end of test
 
     public void playGame() {
-        Scanner scanner = new Scanner(System.in);
-        boolean continuePlaying = true;
         System.out.println("Welcome to Blackjack!");
 
-        while (continuePlaying) {
-            // Проверка, достаточно ли карт в колоде
-            if (!deck.hasEnoughCards()) {
-                deck = new Deck();  // Создаем новую колоду
-                System.out.println("Shuffling new deck...");
-            }
+        try (Scanner scanner = new Scanner(System.in)) { // try-with-resources для Scanner
+            boolean continuePlaying = true;
 
-            resetHands();  // Очищаем руки перед началом раунда
+            while (continuePlaying) {
+                // Проверка, достаточно ли карт в колоде
+                if (!deck.hasEnoughCards()) {
+                    deck = new Deck();  // Создаем новую колоду
+                    System.out.println("Shuffling new deck...");
+                }
 
-            System.out.println("\nRound " + (playerWins + dealerWins + 1));
-            dealInitialCards(); //Раздает начальные карты игроку и дилеру
-            if (checkInitialBlackjack()) { //если есть ли у игрока или дилера блэкджек сразу после раздачи первых двух карт
-                displayHands(true);  // Открываем карту дилера, если игрок сразу выигрывает
-                continuePlaying = askToContinue(scanner);//если есть блэкджек спросить про новый раунд
-                continue;
-            }
+                resetHands();  // Очищаем руки перед началом раунда
 
-            playerTurn(scanner);//если еще нет блэка ни у кого - очередь хода игрока
-            if (!player.isBusted()) {//если игрок не перебрал, то ход дилера
-                dealerTurn();
+                System.out.println("\nRound " + (playerWins + dealerWins + 1));
+                dealInitialCards(); //Раздает начальные карты игроку и дилеру
+                if (checkInitialBlackjack()) { //если есть ли у игрока или дилера блэкджек сразу после раздачи первых двух карт
+                    displayHands(true);  // Открываем карту дилера, если игрок сразу выигрывает
+                    continuePlaying = askToContinue(scanner);//если есть блэкджек спросить про новый раунд
+                    continue;
+                }
+
+                playerTurn(scanner);//если еще нет блэка ни у кого - очередь хода игрока
+                if (!player.isBusted()) {//если игрок не перебрал, то ход дилера
+                    dealerTurn();
+                }
+                determineWinner();
+                continuePlaying = askToContinue(scanner);
             }
-            determineWinner();
-            continuePlaying = askToContinue(scanner);
         }
-        scanner.close();
     }
 
     private void resetHands() {
@@ -175,10 +176,5 @@ public class BlackjackGame {
         System.out.println("\nDo you want to continue playing? (yes/no)");
         String response = scanner.next().toLowerCase();
         return response.equals("yes");
-    }
-
-    public static void main(String[] args) {
-        BlackjackGame game = new BlackjackGame();
-        game.playGame();
     }
 }

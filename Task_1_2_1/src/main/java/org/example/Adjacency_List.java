@@ -15,23 +15,33 @@ public class Adjacency_List implements Graph{
 
     @Override
     public void add_vertex(int vertex){
-        Count_of_vertex++;
-        adjacencyList.putIfAbsent(vertex, new ArrayList<>());
+        if(vertex >= 0 && vertex <= Count_of_vertex){
+            Count_of_vertex++;
+            adjacencyList.putIfAbsent(vertex, new ArrayList<>());
+        }
+
     }
     @Override
     public void rem_vertex(int vertex){
-        adjacencyList.remove(vertex);
-        for (List<Integer> neighbors : adjacencyList.values()) {
-            neighbors.remove((Integer) vertex);
+        if (vertex >= 0 && vertex < Count_of_vertex) {
+            adjacencyList.remove(vertex);
+            for (List<Integer> neighbors : adjacencyList.values()) {
+                neighbors.remove((Integer) vertex);
+            }
+            Count_of_vertex--;
         }
     }
     @Override
     public void add_edge(int from, int to){
-        adjacencyList.get(from).add(to);
+        if (from < Count_of_vertex && from >= 0 && to < Count_of_vertex && to >= 0) {
+            adjacencyList.get(from).add(to);
+        }
     }
     @Override
     public void rem_edge(int from, int to){
-        adjacencyList.get(from).remove((Integer) to);
+        if (from < Count_of_vertex && from >= 0 && to < Count_of_vertex && to >= 0) {
+            adjacencyList.get(from).remove((Integer) to);
+        }
     }
     @Override
     public List<Integer> neighbors_of_vertex(int vertex){
@@ -55,7 +65,6 @@ public class Adjacency_List implements Graph{
 
             // Первая строка файла содержит количество вершин
             int vertices = Integer.parseInt(reader.readLine().trim());
-            Count_of_vertex = vertices;
 
             // Инициализация списка смежности для всех вершин
             for (int i = 0; i < vertices; i++) {
@@ -67,7 +76,7 @@ public class Adjacency_List implements Graph{
             while ((line = reader.readLine()) != null) {
                 String[] edge = line.trim().split(" ");
                 if (edge.length != 2) {
-                    throw new IllegalArgumentException("Неверный формат строки: " + line);
+                    throw new IllegalArgumentException("Invalid string format: " + line);
                 }
 
                 try {
@@ -77,20 +86,20 @@ public class Adjacency_List implements Graph{
                     // Добавляем ребро из вершины from в вершину to
                     add_edge(from, to);
                 } catch (NumberFormatException e) {
-                    throw new IllegalArgumentException("Неверный формат чисел в строке: " + line);
+                    throw new IllegalArgumentException("Invalid format of numbers in a string: " + line);
                 }
             }
 
         } catch (IOException e) {
-            System.err.println("Ошибка чтения файла: " + e.getMessage());
+            System.err.println("File reading error: " + e.getMessage());
         } catch (IllegalArgumentException e) {
-            System.err.println("Ошибка формата данных: " + e.getMessage());
+            System.err.println("Data format error: " + e.getMessage());
         } finally {
             if (reader != null) {
                 try {
                     reader.close();
                 } catch (IOException e) {
-                    System.err.println("Ошибка закрытия файла: " + e.getMessage());
+                    System.err.println("File closing error: " + e.getMessage());
                 }
             }
         }
@@ -98,7 +107,7 @@ public class Adjacency_List implements Graph{
 
     @Override
     public void print_graph() {
-        System.out.println("Список смежности:");
+        System.out.println("Adjacency List:");
         for (Map.Entry<Integer, List<Integer>> entry : adjacencyList.entrySet()) {
             Integer vertex = entry.getKey();
             List<Integer> neighbors = entry.getValue();
@@ -181,9 +190,15 @@ public class Adjacency_List implements Graph{
             }
         }
 
+        class CycleInGraphException extends RuntimeException {
+            public CycleInGraphException(String message) {
+                super(message);
+            }
+        }
+
         // Если количество отсортированных вершин меньше, чем количество вершин в графе, значит, есть цикл
         if (sortedList.size() != Count_of_vertex) {
-            throw new RuntimeException("Граф содержит цикл");
+            throw new CycleInGraphException("Graph has a cycle. Topological sorting is not possible.");
         }
 
         return sortedList;

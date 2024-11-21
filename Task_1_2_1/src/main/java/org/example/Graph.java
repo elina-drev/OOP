@@ -10,6 +10,5 @@ public interface Graph {
     List<Integer> neighbors_of_vertex(int vertex);
     void read_from_file(String filename);
     void print_graph();
-    boolean equals(Object o);         // Сравнение графов
     List<Integer> topologicalSort();
 }

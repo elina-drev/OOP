@@ -27,36 +27,37 @@ public class Adjacency_matrix implements Graph {
 
     @Override
     public void add_vertex(int vertex) {
-        if (vertex >= Count_of_vertex) {
+        if (vertex == Count_of_vertex) {
             boolean[][] newMatrix = new boolean[vertex + 1][vertex + 1];
             for (int i = 0; i < Count_of_vertex; i++) {
                 System.arraycopy(adjacencyMatrix[i], 0, newMatrix[i], 0, Count_of_vertex);
             }
             adjacencyMatrix = newMatrix;
-            Count_of_vertex = vertex + 1;
+            Count_of_vertex++;
         }
     }
 
     @Override
     public void rem_vertex(int vertex) {
-        if (vertex < Count_of_vertex) {
+        if (vertex < Count_of_vertex && vertex >= 0) {
             for (int i = 0; i < Count_of_vertex; i++) {
                 adjacencyMatrix[vertex][i] = false;
                 adjacencyMatrix[i][vertex] = false;
             }
+            Count_of_vertex--;
         }
     }
 
     @Override
     public void add_edge(int from, int to) {
-        if (from < Count_of_vertex && to < Count_of_vertex) {
+        if (from < Count_of_vertex && from >= 0 && to < Count_of_vertex && to >= 0) {
             adjacencyMatrix[from][to] = true;
         }
     }
 
     @Override
     public void rem_edge(int from, int to) {
-        if (from < Count_of_vertex && to < Count_of_vertex) {
+        if (from < Count_of_vertex && from >= 0 && to < Count_of_vertex && to >= 0) {
             adjacencyMatrix[from][to] = false;
         }
     }
@@ -64,12 +65,15 @@ public class Adjacency_matrix implements Graph {
     @Override
     public List<Integer> neighbors_of_vertex(int vertex) {
         List<Integer> neighbors = new ArrayList<>();
-        for (int i = 0; i < Count_of_vertex; i++) {
-            if (adjacencyMatrix[vertex][i]) {
-                neighbors.add(i);
+        if (vertex >= 0 && vertex < Count_of_vertex) {
+            for (int i = 0; i < Count_of_vertex; i++) {
+                if (adjacencyMatrix[vertex][i]) {
+                    neighbors.add(i);
+                }
             }
         }
         return neighbors;
+
     }
 
     @Override
@@ -97,7 +101,7 @@ public class Adjacency_matrix implements Graph {
             while ((line = reader.readLine()) != null) {
                 String[] edge = line.trim().split(" ");
                 if (edge.length != 2) {
-                    throw new IllegalArgumentException("Неверный формат строки: " + line);
+                    throw new IllegalArgumentException("Invalid string format: " + line);
                 }
 
                 try {
@@ -107,20 +111,20 @@ public class Adjacency_matrix implements Graph {
                     // Добавляем ребро между вершинами u и v
                     add_edge(from, to);
                 } catch (NumberFormatException e) {
-                    throw new IllegalArgumentException("Неверный формат чисел в строке: " + line);
+                    throw new IllegalArgumentException("Invalid format of numbers in a string: " + line);
                 }
             }
 
         } catch (IOException e) {
-            System.err.println("Ошибка чтения файла: " + e.getMessage());
+            System.err.println("File reading error: " + e.getMessage());
         } catch (IllegalArgumentException e) {
-            System.err.println("Ошибка формата данных: " + e.getMessage());
+            System.err.println("Data format error: " + e.getMessage());
         } finally {
             if (reader != null) {
                 try {
                     reader.close();
                 } catch (IOException e) {
-                    System.err.println("Ошибка закрытия файла: " + e.getMessage());
+                    System.err.println("File closing error: " + e.getMessage());
                 }
             }
         }
@@ -128,13 +132,29 @@ public class Adjacency_matrix implements Graph {
 
     @Override
     public void print_graph() {
-        System.out.println("Матрица смежности:");
-        for (int i = 0; i < Count_of_vertex; i++) {
-            for (int j = 0; j < Count_of_vertex; j++) {
-                System.out.print((adjacencyMatrix[i][j] ? "1 " : "0 "));
-            }
-            System.out.println();
+        StringBuilder sb = new StringBuilder();
+
+        System.out.println("Adjacency matrix:");
+        sb.append("   "); // Для выравнивания перед первой строкой номеров вершин
+        for (int j = 0; j < Count_of_vertex; j++) {
+            sb.append(j).append(" ");
         }
+        sb.append("\n");
+
+        sb.append("   ");
+        for (int j = 0; j < Count_of_vertex; j++) {
+            sb.append("- ");
+        }
+        sb.append("\n");
+
+        for (int i = 0; i < Count_of_vertex; i++) {
+            sb.append(i).append("| "); // Добавляем номер вершины в первый столбец
+            for (int j = 0; j < Count_of_vertex; j++) {
+                sb.append(adjacencyMatrix[i][j] ? "1 " : "0 ");
+            }
+            sb.append("\n"); // Переход на новую строку после каждой строки матрицы
+        }
+        System.out.println(sb); // Один раз выводим всё содержимое
     }
 
     @Override
@@ -210,9 +230,16 @@ public class Adjacency_matrix implements Graph {
                 }
             }
         }
+
+        class CycleInGraphException extends RuntimeException {
+            public CycleInGraphException(String message) {
+                super(message);
+            }
+        }
+
         // Если количество отсортированных вершин меньше, чем количество вершин в графе, значит, есть цикл
         if (sortedList.size() != Count_of_vertex) {
-            throw new RuntimeException("Граф содержит цикл");
+            throw new CycleInGraphException("Graph has a cycle. Topological sorting is not possible.");
         }
 
         return sortedList;

@@ -1,0 +1,11 @@
+-classpath 'C:\\Users\\elina\\Desktop\\opp2024\\OOP\\Task_1_2_1\\build\\classes\\java\\main;C:\\Users\\elina\\Desktop\\opp2024\\OOP\\Task_1_2_1\\build\\resources\\main'
+-d 'C:\\Users\\elina\\Desktop\\opp2024\\OOP\\Task_1_2_1\\build\\docs\\javadoc'
+-doctitle 'Task_1_2_1 1.0-SNAPSHOT API'
+-notimestamp 
+-quiet 
+-windowtitle 'Task_1_2_1 1.0-SNAPSHOT API'
+'C:\\Users\\elina\\Desktop\\opp2024\\OOP\\Task_1_2_1\\src\\main\\java\\org\\example\\Adjacency_List.java'
+'C:\\Users\\elina\\Desktop\\opp2024\\OOP\\Task_1_2_1\\src\\main\\java\\org\\example\\Adjacency_matrix.java'
+'C:\\Users\\elina\\Desktop\\opp2024\\OOP\\Task_1_2_1\\src\\main\\java\\org\\example\\Graph.java'
+'C:\\Users\\elina\\Desktop\\opp2024\\OOP\\Task_1_2_1\\src\\main\\java\\org\\example\\Incidence_matrix.java'
+'C:\\Users\\elina\\Desktop\\opp2024\\OOP\\Task_1_2_1\\src\\main\\java\\org\\example\\Main.java'

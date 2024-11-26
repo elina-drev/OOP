@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Incidence_matrix.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Task_1_2_1</a> &gt; <a href="index.source.html" class="el_package">org.example</a> &gt; <span class="el_source">Incidence_matrix.java</span></div><h1>Incidence_matrix.java</h1><pre class="source lang-java linenums">package org.example;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
+public class Incidence_matrix implements Graph{
+    private int[][] IncidenceMatrix;
+    private int Count_of_vertex;
+    private int edgeCount;
+
+
+    //Конструктор
+<span class="fc" id="L18">    public Incidence_matrix() {</span>
+<span class="fc" id="L19">        IncidenceMatrix = new int[0][0];// Инициализация с нулевым количеством рёбер</span>
+<span class="fc" id="L20">        edgeCount = 0;</span>
+<span class="fc" id="L21">        Count_of_vertex = 0;</span>
+<span class="fc" id="L22">    }</span>
+    @Override
+    public void add_vertex(int vertex){
+        // Добавляем новую строку для вершины в матрицу инцидентности
+<span class="pc bpc" id="L26" title="1 of 2 branches missed.">        if (vertex == Count_of_vertex) {</span>
+<span class="fc" id="L27">            int[][] newMatrix = new int[vertex + 1][edgeCount];</span>
+<span class="fc bfc" id="L28" title="All 2 branches covered.">            for (int i = 0; i &lt; Count_of_vertex; i++) {</span>
+<span class="fc" id="L29">                System.arraycopy(IncidenceMatrix[i], 0, newMatrix[i], 0, edgeCount);</span>
+            }
+<span class="fc" id="L31">            IncidenceMatrix = newMatrix;</span>
+<span class="fc" id="L32">            Count_of_vertex++;</span>
+        }
+<span class="fc" id="L34">    }</span>
+    @Override
+    public void rem_vertex(int vertex){
+<span class="pc bpc" id="L37" title="2 of 4 branches missed.">        if (vertex &lt; Count_of_vertex &amp;&amp; vertex &gt;= 0) {</span>
+            // Удаляем вершину из матрицы (удаляем строку)
+<span class="fc" id="L39">            int[][] newMatrix = new int[Count_of_vertex - 1][edgeCount];</span>
+<span class="fc" id="L40">            int newRow = 0;</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">            for (int i = 0; i &lt; Count_of_vertex; i++) {</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">                if (i == vertex) continue; // Пропускаем удаляемую вершину</span>
+<span class="fc" id="L43">                System.arraycopy(IncidenceMatrix[i], 0, newMatrix[newRow], 0, edgeCount);</span>
+<span class="fc" id="L44">                newRow++;</span>
+            }
+<span class="fc" id="L46">            IncidenceMatrix = newMatrix;</span>
+<span class="fc" id="L47">            Count_of_vertex--;</span>
+        }
+<span class="fc" id="L49">    }</span>
+    @Override
+    public void add_edge(int from, int to){
+<span class="pc bpc" id="L52" title="4 of 8 branches missed.">        if (from &lt; Count_of_vertex &amp;&amp; from &gt;= 0 &amp;&amp; to &lt; Count_of_vertex &amp;&amp; to &gt;= 0) {</span>
+            // Добавляем новый столбец для нового ребра
+<span class="fc" id="L54">            int[][] newMatrix = new int[Count_of_vertex][edgeCount + 1];</span>
+<span class="fc bfc" id="L55" title="All 2 branches covered.">            for (int i = 0; i &lt; Count_of_vertex; i++) {</span>
+<span class="fc" id="L56">                System.arraycopy(IncidenceMatrix[i], 0, newMatrix[i], 0, edgeCount);</span>
+            }
+
+            // Устанавливаем инцидентности для вершины 'from' и 'to'
+<span class="fc" id="L60">            newMatrix[from][edgeCount] = 1; // 1 для начальной вершины</span>
+<span class="fc" id="L61">            newMatrix[to][edgeCount] = -1; // -1 для конечной вершины</span>
+
+<span class="fc" id="L63">            IncidenceMatrix = newMatrix;</span>
+<span class="fc" id="L64">            edgeCount++;</span>
+        }
+<span class="fc" id="L66">    }</span>
+    @Override
+    public void rem_edge(int from, int to){
+<span class="pc bpc" id="L69" title="4 of 8 branches missed.">        if (from &lt; Count_of_vertex &amp;&amp; from &gt;= 0 &amp;&amp; to &lt; Count_of_vertex &amp;&amp; to &gt;= 0) {</span>
+            // Ищем соответствующее ребро в матрице
+<span class="pc bpc" id="L71" title="1 of 2 branches missed.">            for (int j = 0; j &lt; edgeCount; j++) {</span>
+<span class="pc bpc" id="L72" title="2 of 4 branches missed.">                if (IncidenceMatrix[from][j] == 1 &amp;&amp; IncidenceMatrix[to][j] == -1) {</span>
+                    // Удаляем ребро (столбец)
+<span class="fc" id="L74">                    int[][] newMatrix = new int[Count_of_vertex][edgeCount - 1];</span>
+<span class="fc bfc" id="L75" title="All 2 branches covered.">                    for (int i = 0; i &lt; Count_of_vertex; i++) {</span>
+<span class="fc" id="L76">                        int newCol = 0;</span>
+<span class="fc bfc" id="L77" title="All 2 branches covered.">                        for (int k = 0; k &lt; edgeCount; k++) {</span>
+<span class="pc bpc" id="L78" title="1 of 2 branches missed.">                            if (k == j) continue;  // Пропускаем удаляемое ребро</span>
+<span class="nc" id="L79">                            newMatrix[i][newCol] = IncidenceMatrix[i][k];</span>
+<span class="nc" id="L80">                            newCol++;</span>
+                        }
+                    }
+<span class="fc" id="L83">                    IncidenceMatrix = newMatrix;</span>
+<span class="fc" id="L84">                    edgeCount--;</span>
+<span class="fc" id="L85">                    return;</span>
+                }
+            }
+        }
+<span class="nc" id="L89">    }</span>
+    @Override
+    public List&lt;Integer&gt; neighbors_of_vertex(int vertex){
+<span class="fc" id="L92">        List&lt;Integer&gt; neighbors = new ArrayList&lt;&gt;();</span>
+<span class="pc bpc" id="L93" title="1 of 4 branches missed.">        if (vertex &gt;= 0 &amp;&amp; vertex &lt; Count_of_vertex) {</span>
+            // Проходим по столбцам (рёбрам) и ищем инцидентные вершины
+<span class="fc bfc" id="L95" title="All 2 branches covered.">            for (int j = 0; j &lt; edgeCount; j++) {</span>
+<span class="fc bfc" id="L96" title="All 2 branches covered.">                if (IncidenceMatrix[vertex][j] == 1) {</span>
+                    // Если вершина инцидентна ребру, находим другую вершину
+<span class="pc bpc" id="L98" title="1 of 2 branches missed.">                    for (int i = 0; i &lt; Count_of_vertex; i++) {</span>
+<span class="fc bfc" id="L99" title="All 4 branches covered.">                        if (i != vertex &amp;&amp; IncidenceMatrix[i][j] == -1) {</span>
+<span class="fc" id="L100">                            neighbors.add(i);</span>
+<span class="fc" id="L101">                            break;</span>
+                        }
+                    }
+                }
+            }
+        }
+<span class="fc" id="L107">        return neighbors;</span>
+    }
+    @Override
+    public void read_from_file(String filename) {
+<span class="fc" id="L111">        BufferedReader reader = null;</span>
+        try {
+<span class="fc" id="L113">            reader = new BufferedReader(new FileReader(filename));</span>
+
+            // Первая строка файла содержит количество вершин
+<span class="fc" id="L116">            int vertices = Integer.parseInt(reader.readLine().trim());</span>
+<span class="fc" id="L117">            Count_of_vertex = vertices;</span>
+<span class="fc" id="L118">            IncidenceMatrix = new int[Count_of_vertex][0];  // Инициализация матрицы с нулевым количеством рёбер</span>
+
+            String line;
+<span class="fc" id="L121">            List&lt;int[]&gt; edges = new ArrayList&lt;&gt;();  // Список для хранения рёбер</span>
+
+            // Чтение всех строк с рёбрами
+<span class="fc bfc" id="L124" title="All 2 branches covered.">            while ((line = reader.readLine()) != null) {</span>
+<span class="fc" id="L125">                String[] edge = line.trim().split(&quot; &quot;);</span>
+<span class="pc bpc" id="L126" title="1 of 2 branches missed.">                if (edge.length != 2) {</span>
+<span class="nc" id="L127">                    throw new IllegalArgumentException(&quot;Invalid string format: &quot; + line);</span>
+                }
+
+                try {
+<span class="fc" id="L131">                    int from = Integer.parseInt(edge[0]);</span>
+<span class="fc" id="L132">                    int to = Integer.parseInt(edge[1]);</span>
+
+                    // Добавляем ребро в список
+<span class="fc" id="L135">                    edges.add(new int[]{from, to});</span>
+<span class="nc" id="L136">                } catch (NumberFormatException e) {</span>
+<span class="nc" id="L137">                    throw new IllegalArgumentException(&quot;Invalid format of numbers in a string: &quot; + line);</span>
+<span class="fc" id="L138">                }</span>
+<span class="fc" id="L139">            }</span>
+
+            // После того как мы прочитали все рёбра, добавляем их в матрицу инцидентности
+<span class="fc bfc" id="L142" title="All 2 branches covered.">            for (int[] edge : edges) {</span>
+<span class="fc" id="L143">                add_edge(edge[0], edge[1]);</span>
+<span class="fc" id="L144">            }</span>
+
+<span class="nc" id="L146">        } catch (IOException e) {</span>
+<span class="nc" id="L147">            System.err.println(&quot;File reading error: &quot; + e.getMessage());</span>
+<span class="nc" id="L148">        } catch (IllegalArgumentException e) {</span>
+<span class="nc" id="L149">            System.err.println(&quot;Data format error: &quot; + e.getMessage());</span>
+<span class="pc" id="L150">        }</span>
+<span class="fc" id="L151">    }</span>
+    @Override
+    public void print_graph(){
+<span class="nc" id="L154">        StringBuilder sb = new StringBuilder();</span>
+
+<span class="nc" id="L156">        System.out.println(&quot;Incidence matrix:&quot;);</span>
+
+<span class="nc bnc" id="L158" title="All 2 branches missed.">        for (int i = 0; i &lt; Count_of_vertex; i++) {</span>
+<span class="nc" id="L159">            sb.append(i).append(&quot;| &quot;); // Добавляем номер вершины в первый столбец</span>
+<span class="nc bnc" id="L160" title="All 2 branches missed.">            for (int j = 0; j &lt; edgeCount; j++) {</span>
+<span class="nc" id="L161">                sb.append(IncidenceMatrix[i][j]).append(&quot; &quot;);</span>
+            }
+<span class="nc" id="L163">            sb.append(&quot;\n&quot;); // Переход на новую строку после каждой строки матрицы</span>
+        }
+<span class="nc" id="L165">        System.out.println(sb); // Один раз выводим всё содержимое</span>
+<span class="nc" id="L166">    }</span>
+    @Override
+    public boolean equals(Object obj) {
+        // Проверяем, не является ли объект самим собой
+<span class="pc bpc" id="L170" title="1 of 2 branches missed.">        if (this == obj) {</span>
+<span class="nc" id="L171">            return true;</span>
+        }
+
+        // Проверяем, является ли объект экземпляром того же класса
+<span class="pc bpc" id="L175" title="1 of 2 branches missed.">        if (!(obj instanceof Incidence_matrix)) {</span>
+<span class="nc" id="L176">            return false;</span>
+        }
+
+        // Приводим объект к типу Incidence_matrix
+<span class="fc" id="L180">        Incidence_matrix other = (Incidence_matrix) obj;</span>
+
+        // Проверяем количество вершин
+<span class="pc bpc" id="L183" title="1 of 2 branches missed.">        if (this.Count_of_vertex != other.Count_of_vertex) {</span>
+<span class="nc" id="L184">            return false;</span>
+        }
+
+        // Сравниваем матрицы инцидентности
+<span class="fc bfc" id="L188" title="All 2 branches covered.">        for (int i = 0; i &lt; Count_of_vertex; i++) {</span>
+<span class="fc bfc" id="L189" title="All 2 branches covered.">            for (int j = 0; j &lt; edgeCount; j++) {</span>
+<span class="pc bpc" id="L190" title="1 of 2 branches missed.">                if (this.IncidenceMatrix[i][j] != other.IncidenceMatrix[i][j]) {</span>
+<span class="nc" id="L191">                    return false;</span>
+                }
+            }
+        }
+
+        // Если все проверки пройдены, графы равны
+<span class="fc" id="L197">        return true;</span>
+    }
+    @Override
+    public List&lt;Integer&gt; topologicalSort(){
+        // Массив для подсчета входящих рёбер для каждой вершины
+<span class="fc" id="L202">        int[] inDegree = new int[Count_of_vertex];</span>
+
+        // Подсчет количества входящих рёбер для каждой вершины
+<span class="fc bfc" id="L205" title="All 2 branches covered.">        for (int j = 0; j &lt; edgeCount; j++) { // Проходим по всем рёбрам</span>
+<span class="fc bfc" id="L206" title="All 2 branches covered.">            for (int i = 0; i &lt; Count_of_vertex; i++) { // Проходим по всем вершинам</span>
+<span class="fc bfc" id="L207" title="All 2 branches covered.">                if (IncidenceMatrix[i][j] == -1) {</span>
+                    // Если найдено, увеличиваем входную степень для вершины i
+<span class="fc" id="L209">                    inDegree[i]++;</span>
+                }
+            }
+        }
+
+        // Очередь для вершин с входной степенью 0
+<span class="fc" id="L215">        Queue&lt;Integer&gt; queue = new LinkedList&lt;&gt;();</span>
+<span class="fc bfc" id="L216" title="All 2 branches covered.">        for (int i = 0; i &lt; Count_of_vertex; i++) {</span>
+<span class="fc bfc" id="L217" title="All 2 branches covered.">            if (inDegree[i] == 0) {</span>
+<span class="fc" id="L218">                queue.add(i);</span>
+            }
+        }
+
+        // Список для хранения результата топологической сортировки
+<span class="fc" id="L223">        List&lt;Integer&gt; sortedList = new ArrayList&lt;&gt;();</span>
+
+        // Пока в очереди есть вершины
+<span class="fc bfc" id="L226" title="All 2 branches covered.">        while (!queue.isEmpty()) {</span>
+<span class="fc" id="L227">            int current = queue.poll();</span>
+<span class="fc" id="L228">            sortedList.add(current);</span>
+
+            // Обновляем степени входа для всех соседей текущей вершины
+<span class="fc bfc" id="L231" title="All 2 branches covered.">            for (int j = 0; j &lt; edgeCount; j++) {</span>
+<span class="fc bfc" id="L232" title="All 2 branches covered.">                if (IncidenceMatrix[current][j] == 1) {</span>
+                    // Если это ребро ведет от текущей вершины
+<span class="fc bfc" id="L234" title="All 2 branches covered.">                    for (int i = 0; i &lt; Count_of_vertex; i++) {</span>
+<span class="fc bfc" id="L235" title="All 2 branches covered.">                        if (IncidenceMatrix[i][j] == -1) {</span>
+<span class="fc" id="L236">                            inDegree[i]--;</span>
+<span class="pc bpc" id="L237" title="1 of 2 branches missed.">                            if (inDegree[i] == 0) {</span>
+<span class="fc" id="L238">                                queue.add(i);</span>
+                            }
+                        }
+                    }
+                }
+            }
+<span class="fc" id="L244">        }</span>
+
+        class CycleInGraphException extends RuntimeException {
+<span class="fc" id="L247">            public CycleInGraphException(String message) {</span>
+<span class="fc" id="L248">                super(message);</span>
+<span class="fc" id="L249">            }</span>
+        }
+
+        // Если количество отсортированных вершин меньше, чем количество вершин в графе, значит, есть цикл
+<span class="fc bfc" id="L253" title="All 2 branches covered.">        if (sortedList.size() != Count_of_vertex) {</span>
+<span class="fc" id="L254">            throw new CycleInGraphException(&quot;Graph has a cycle. Topological sorting is not possible.&quot;);</span>
+        }
+
+<span class="fc" id="L257">        return sortedList;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

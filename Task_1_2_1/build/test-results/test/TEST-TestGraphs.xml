@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="TestGraphs" tests="24" skipped="0" failures="0" errors="0" timestamp="2024-11-21T19:37:10" hostname="VALERCHIK" time="0.096">
+  <properties/>
+  <testcase name="testTopologicalSortWithCycle_adj_matrix()" classname="TestGraphs" time="0.032"/>
+  <testcase name="testRemoveVertex_adj_matrix()" classname="TestGraphs" time="0.003"/>
+  <testcase name="testRemoveEdge_adj_matrix()" classname="TestGraphs" time="0.001"/>
+  <testcase name="testTopologicalSortWithCycle()" classname="TestGraphs" time="0.002"/>
+  <testcase name="testReadFromFile()" classname="TestGraphs" time="0.004"/>
+  <testcase name="testTopologicalSort_adj_list()" classname="TestGraphs" time="0.005"/>
+  <testcase name="testEquals_adj_matrix()" classname="TestGraphs" time="0.002"/>
+  <testcase name="testReadFromFile_adj_list()" classname="TestGraphs" time="0.003"/>
+  <testcase name="testAddVertex_adj_list()" classname="TestGraphs" time="0.001"/>
+  <testcase name="testRemoveEdge_adj_list()" classname="TestGraphs" time="0.001"/>
+  <testcase name="testAddVertex_adj_matrix()" classname="TestGraphs" time="0.001"/>
+  <testcase name="testTopologicalSortWithCycle_adj_list()" classname="TestGraphs" time="0.001"/>
+  <testcase name="testAddEdge_inc_matrix()" classname="TestGraphs" time="0.001"/>
+  <testcase name="testAddEdge_adj_list()" classname="TestGraphs" time="0.001"/>
+  <testcase name="testRemoveVertex_adj_list()" classname="TestGraphs" time="0.001"/>
+  <testcase name="testRemoveVertex_inc_matrix()" classname="TestGraphs" time="0.001"/>
+  <testcase name="testReadFromFile_adj_matrix()" classname="TestGraphs" time="0.003"/>
+  <testcase name="testRemoveEdge_inc_matrix()" classname="TestGraphs" time="0.001"/>
+  <testcase name="testAddEdge_adj_matrix()" classname="TestGraphs" time="0.001"/>
+  <testcase name="testEquals_inc_matrix()" classname="TestGraphs" time="0.0"/>
+  <testcase name="testEquals_adj_list()" classname="TestGraphs" time="0.001"/>
+  <testcase name="testAddVertex_inc_matrix()" classname="TestGraphs" time="0.001"/>
+  <testcase name="testTopologicalSort()" classname="TestGraphs" time="0.001"/>
+  <testcase name="testTopologicalSort_adj_matrix()" classname="TestGraphs" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

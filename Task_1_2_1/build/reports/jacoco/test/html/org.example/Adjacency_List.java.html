@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Adjacency_List.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Task_1_2_1</a> &gt; <a href="index.source.html" class="el_package">org.example</a> &gt; <span class="el_source">Adjacency_List.java</span></div><h1>Adjacency_List.java</h1><pre class="source lang-java linenums">package org.example;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.*;
+
+public class Adjacency_List implements Graph{
+    private final Map&lt;Integer, List&lt;Integer&gt;&gt; adjacencyList;
+    private int Count_of_vertex;
+<span class="fc" id="L11">    public Adjacency_List() {</span>
+<span class="fc" id="L12">        adjacencyList = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L13">        Count_of_vertex = 0;</span>
+<span class="fc" id="L14">    }</span>
+
+    @Override
+    public void add_vertex(int vertex){
+<span class="pc bpc" id="L18" title="1 of 4 branches missed.">        if(vertex &gt;= 0 &amp;&amp; vertex &lt;= Count_of_vertex){</span>
+<span class="fc" id="L19">            Count_of_vertex++;</span>
+<span class="fc" id="L20">            adjacencyList.putIfAbsent(vertex, new ArrayList&lt;&gt;());</span>
+        }
+
+<span class="fc" id="L23">    }</span>
+    @Override
+    public void rem_vertex(int vertex){
+<span class="pc bpc" id="L26" title="2 of 4 branches missed.">        if (vertex &gt;= 0 &amp;&amp; vertex &lt; Count_of_vertex) {</span>
+<span class="fc" id="L27">            adjacencyList.remove(vertex);</span>
+<span class="fc bfc" id="L28" title="All 2 branches covered.">            for (List&lt;Integer&gt; neighbors : adjacencyList.values()) {</span>
+<span class="fc" id="L29">                neighbors.remove((Integer) vertex);</span>
+<span class="fc" id="L30">            }</span>
+<span class="fc" id="L31">            Count_of_vertex--;</span>
+        }
+<span class="fc" id="L33">    }</span>
+    @Override
+    public void add_edge(int from, int to){
+<span class="pc bpc" id="L36" title="4 of 8 branches missed.">        if (from &lt; Count_of_vertex &amp;&amp; from &gt;= 0 &amp;&amp; to &lt; Count_of_vertex &amp;&amp; to &gt;= 0) {</span>
+<span class="fc" id="L37">            adjacencyList.get(from).add(to);</span>
+        }
+<span class="fc" id="L39">    }</span>
+    @Override
+    public void rem_edge(int from, int to){
+<span class="pc bpc" id="L42" title="4 of 8 branches missed.">        if (from &lt; Count_of_vertex &amp;&amp; from &gt;= 0 &amp;&amp; to &lt; Count_of_vertex &amp;&amp; to &gt;= 0) {</span>
+<span class="fc" id="L43">            adjacencyList.get(from).remove((Integer) to);</span>
+        }
+<span class="fc" id="L45">    }</span>
+    @Override
+    public List&lt;Integer&gt; neighbors_of_vertex(int vertex){
+<span class="fc" id="L48">        return adjacencyList.getOrDefault(vertex, new ArrayList&lt;&gt;());</span>
+    }
+    /*
+        формат файла
+        n  // количество вершин
+        i j // ребро между вершинами i и j
+        i k // ребро между вершинами i и k
+
+        5
+        0 1
+        3 4
+         */
+    @Override
+    public void read_from_file(String filename) {
+<span class="fc" id="L62">        BufferedReader reader = null;</span>
+        try {
+<span class="fc" id="L64">            reader = new BufferedReader(new FileReader(filename));</span>
+
+            // Первая строка файла содержит количество вершин
+<span class="fc" id="L67">            int vertices = Integer.parseInt(reader.readLine().trim());</span>
+
+            // Инициализация списка смежности для всех вершин
+<span class="fc bfc" id="L70" title="All 2 branches covered.">            for (int i = 0; i &lt; vertices; i++) {</span>
+<span class="fc" id="L71">                add_vertex(i); // Добавляем вершину в граф</span>
+            }
+
+            String line;
+            // Чтение всех строк с ребрами
+<span class="fc bfc" id="L76" title="All 2 branches covered.">            while ((line = reader.readLine()) != null) {</span>
+<span class="fc" id="L77">                String[] edge = line.trim().split(&quot; &quot;);</span>
+<span class="pc bpc" id="L78" title="1 of 2 branches missed.">                if (edge.length != 2) {</span>
+<span class="nc" id="L79">                    throw new IllegalArgumentException(&quot;Invalid string format: &quot; + line);</span>
+                }
+
+                try {
+<span class="fc" id="L83">                    int from = Integer.parseInt(edge[0]);</span>
+<span class="fc" id="L84">                    int to = Integer.parseInt(edge[1]);</span>
+
+                    // Добавляем ребро из вершины from в вершину to
+<span class="fc" id="L87">                    add_edge(from, to);</span>
+<span class="nc" id="L88">                } catch (NumberFormatException e) {</span>
+<span class="nc" id="L89">                    throw new IllegalArgumentException(&quot;Invalid format of numbers in a string: &quot; + line);</span>
+<span class="fc" id="L90">                }</span>
+<span class="fc" id="L91">            }</span>
+
+<span class="nc" id="L93">        } catch (IOException e) {</span>
+<span class="nc" id="L94">            System.err.println(&quot;File reading error: &quot; + e.getMessage());</span>
+<span class="nc" id="L95">        } catch (IllegalArgumentException e) {</span>
+<span class="nc" id="L96">            System.err.println(&quot;Data format error: &quot; + e.getMessage());</span>
+        } finally {
+<span class="pc bpc" id="L98" title="1 of 2 branches missed.">            if (reader != null) {</span>
+                try {
+<span class="fc" id="L100">                    reader.close();</span>
+<span class="nc" id="L101">                } catch (IOException e) {</span>
+<span class="nc" id="L102">                    System.err.println(&quot;File closing error: &quot; + e.getMessage());</span>
+<span class="fc" id="L103">                }</span>
+            }
+        }
+<span class="fc" id="L106">    }</span>
+
+    @Override
+    public void print_graph() {
+<span class="nc" id="L110">        System.out.println(&quot;Adjacency List:&quot;);</span>
+<span class="nc bnc" id="L111" title="All 2 branches missed.">        for (Map.Entry&lt;Integer, List&lt;Integer&gt;&gt; entry : adjacencyList.entrySet()) {</span>
+<span class="nc" id="L112">            Integer vertex = entry.getKey();</span>
+<span class="nc" id="L113">            List&lt;Integer&gt; neighbors = entry.getValue();</span>
+
+            // Форматируем список соседей в виде {neighbor1, neighbor2}
+<span class="nc" id="L116">            StringBuilder neighborsString = new StringBuilder();</span>
+<span class="nc" id="L117">            neighborsString.append(&quot;{&quot;);</span>
+
+<span class="nc bnc" id="L119" title="All 2 branches missed.">            for (int i = 0; i &lt; neighbors.size(); i++) {</span>
+<span class="nc" id="L120">                neighborsString.append(neighbors.get(i));</span>
+<span class="nc bnc" id="L121" title="All 2 branches missed.">                if (i &lt; neighbors.size() - 1) {</span>
+<span class="nc" id="L122">                    neighborsString.append(&quot;, &quot;);</span>
+                }
+            }
+<span class="nc" id="L125">            neighborsString.append(&quot;}&quot;);</span>
+
+            // Вывод вершины и её соседей
+<span class="nc" id="L128">            System.out.println(vertex + &quot; &quot; + neighborsString);</span>
+<span class="nc" id="L129">        }</span>
+<span class="nc" id="L130">    }</span>
+    @Override
+    public boolean equals(Object o) { // Сравнение графов
+        // Проверяем, не является ли объект самим собой
+<span class="pc bpc" id="L134" title="1 of 2 branches missed.">        if (this == o) {</span>
+<span class="nc" id="L135">            return true;</span>
+        }
+
+        // Проверяем, является ли объект экземпляром того же класса
+<span class="pc bpc" id="L139" title="1 of 2 branches missed.">        if (!(o instanceof Adjacency_List)) {</span>
+<span class="nc" id="L140">            return false;</span>
+        }
+
+        // Приводим объект к типу Adjacency_List
+<span class="fc" id="L144">        Adjacency_List other = (Adjacency_List) o;</span>
+
+        // Сравниваем количество вершин
+<span class="pc bpc" id="L147" title="1 of 2 branches missed.">        if (this.Count_of_vertex != other.Count_of_vertex) {</span>
+<span class="nc" id="L148">            return false;</span>
+        }
+
+        // Сравниваем списки смежности
+<span class="fc" id="L152">        return this.adjacencyList.equals(other.adjacencyList);</span>
+    }
+
+    // Реализация топологической сортировки на основе алгоритма Кана
+    @Override
+    public List&lt;Integer&gt; topologicalSort() {
+        // Массив для подсчета входящих рёбер для каждой вершины
+<span class="fc" id="L159">        int[] inDegree = new int[Count_of_vertex];</span>
+
+        // Подсчет количества входящих рёбер для каждой вершины
+<span class="fc bfc" id="L162" title="All 2 branches covered.">        for (List&lt;Integer&gt; neighbors : adjacencyList.values()) {</span>
+<span class="fc bfc" id="L163" title="All 2 branches covered.">            for (int neighbor : neighbors) {</span>
+<span class="fc" id="L164">                inDegree[neighbor]++;</span>
+<span class="fc" id="L165">            }</span>
+<span class="fc" id="L166">        }</span>
+
+        // Очередь для вершин с входной степенью 0
+<span class="fc" id="L169">        Queue&lt;Integer&gt; queue = new LinkedList&lt;&gt;();</span>
+<span class="fc bfc" id="L170" title="All 2 branches covered.">        for (int i = 0; i &lt; Count_of_vertex; i++) {</span>
+<span class="fc bfc" id="L171" title="All 2 branches covered.">            if (inDegree[i] == 0) {</span>
+<span class="fc" id="L172">                queue.add(i);</span>
+            }
+        }
+
+        // Список для хранения результата топологической сортировки
+<span class="fc" id="L177">        List&lt;Integer&gt; sortedList = new ArrayList&lt;&gt;();</span>
+
+        // Пока в очереди есть вершины
+<span class="fc bfc" id="L180" title="All 2 branches covered.">        while (!queue.isEmpty()) {</span>
+<span class="fc" id="L181">            int current = queue.poll();</span>
+<span class="fc" id="L182">            sortedList.add(current);</span>
+
+            // Для каждого соседа текущей вершины уменьшаем степень входа
+<span class="fc bfc" id="L185" title="All 2 branches covered.">            for (int neighbor : adjacencyList.getOrDefault(current, new ArrayList&lt;&gt;())) {</span>
+<span class="fc" id="L186">                inDegree[neighbor]--;</span>
+<span class="pc bpc" id="L187" title="1 of 2 branches missed.">                if (inDegree[neighbor] == 0) {</span>
+<span class="fc" id="L188">                    queue.add(neighbor);</span>
+                }
+<span class="fc" id="L190">            }</span>
+<span class="fc" id="L191">        }</span>
+
+        class CycleInGraphException extends RuntimeException {
+<span class="fc" id="L194">            public CycleInGraphException(String message) {</span>
+<span class="fc" id="L195">                super(message);</span>
+<span class="fc" id="L196">            }</span>
+        }
+
+        // Если количество отсортированных вершин меньше, чем количество вершин в графе, значит, есть цикл
+<span class="fc bfc" id="L200" title="All 2 branches covered.">        if (sortedList.size() != Count_of_vertex) {</span>
+<span class="fc" id="L201">            throw new CycleInGraphException(&quot;Graph has a cycle. Topological sorting is not possible.&quot;);</span>
+        }
+
+<span class="fc" id="L204">        return sortedList;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
